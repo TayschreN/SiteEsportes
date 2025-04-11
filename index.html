@@ -1,108 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <!-- Define o arquivo de manifesto para PWA -->
+  <link rel="manifest" href="manifest.json" />
+  
+  <!-- Cor da barra de navegação no mobile -->
+  <meta name="theme-color" content="#111" />
+  
+  <!-- Ícone do site -->
+  <link rel="icon" href="icon-192.png" />
+  
+  <!-- Configuração de codificação e responsividade -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meu App de Esportes</title>
-  <style>
-    :root {
-      --bg-color: #f0f0f0;
-      --card-bg: white;
-      --text-color: #000;
-      --nav-bg: #333;
-      --nav-active: #444;
-    }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg-color: #121212;
-        --card-bg: #1e1e1e;
-        --text-color: #fff;
-        --nav-bg: #222;
-        --nav-active: #333;
-      }
-    }
+  <!-- Título da aba -->
+  <title>Esportes</title>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
-    }
-
-    header {
-      background-color: #222;
-      color: #fff;
-      padding: 1rem;
-      text-align: center;
-      font-size: 1.5rem;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-around;
-      background-color: var(--nav-bg);
-      flex-wrap: wrap;
-    }
-
-    nav button {
-      flex: 1;
-      padding: 1rem;
-      border: none;
-      background: none;
-      color: #fff;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    nav button:hover,
-    nav button.active {
-      background-color: var(--nav-active);
-    }
-
-    section {
-      display: none;
-      padding: 1rem;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-
-    section.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .card {
-      background: var(--card-bg);
-      margin: 1rem 0;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .card img {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
-    }
-
-    .futebol .card { border-left: 5px solid #008000; }
-    .nba .card { border-left: 5px solid #007A33; }
-    .f1 .card { border-left: 5px solid #DC0000; }
-    .ufc .card { border-left: 5px solid #d32f2f; }
-  </style>
+  <!-- Link para o CSS -->
+  <link rel="stylesheet" href="style.css" />   
 </head>
 <body>
-  <header>Meu App de Esportes 🏆</header>
 
+  <!-- Cabeçalho principal -->
+  <header>Esportes</header>
+
+  <!-- Menu de navegação entre as seções -->
   <nav>
     <button class="active" onclick="showSection('futebol')">Futebol</button>
     <button onclick="showSection('nba')">Basquete</button>
@@ -110,86 +33,101 @@
     <button onclick="showSection('ufc')">UFC</button>
   </nav>
 
+  <!-- Botão de alternar modo escuro/claro -->
+  <div style="text-align: center; padding: 10px 20px;">
+    <button onclick="toggleDarkMode()" id="darkModeBtn">🌙 Modo Escuro</button>
+  </div>
+
+  <!-- Seção de Futebol -->
   <section id="futebol" class="active futebol">
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Sao_Paulo_FC_crest.svg" alt="SPFC">
+    <!-- Card do São Paulo -->
+    <div class="card spfc">
+      <img src="icons/spfc.png" alt="SPFC">
       <div>
         ⚽ <strong>São Paulo FC</strong><br>
-        Último jogo: SPFC 2 x 1 Palmeiras
+        <span class="resultado">Carregando...</span> <!-- O resultado do jogo vai ser colocado aqui via JS -->
       </div>
     </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/CR_Vasco_da_Gama_logo.svg" alt="Vasco">
+
+    <!-- Card do Vasco -->
+    <div class="card" id="vasco-card">
+      <img src="icons/vasco.png" alt="Vasco">
       <div>
         ⚽ <strong>Vasco</strong><br>
-        Último jogo: Vasco 0 x 3 Flamengo
+        <span id="vasco-jogo">Carregando...</span> <!-- Aqui também será atualizado via JS -->
       </div>
     </div>
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/PaysanduSC.png" alt="Paysandu">
+
+    <div class="card" id="paysandu-card">
+      <img src="icons/paysandu.png" alt="Paysandu">
       <div>
         ⚽ <strong>Paysandu</strong><br>
-        Último jogo: Paysandu 1 x 1 Remo
+        <span id="paysandu-jogo">Carregando...</span>
       </div>
-    </div>
+    </div>    
   </section>
 
+  <!-- Seção de NBA -->
   <section id="nba" class="nba">
     <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/8/8f/Boston_Celtics.svg" alt="Celtics">
+      <img src="icons/celtics.png" alt="Celtics"> 
       <div>
         🏀 <strong>Boston Celtics</strong><br>
-        Último jogo: Celtics 115 x 108 Lakers
+        Último jogo: Celtics 115 x 108 Lakers <!-- Também fixo no momento -->
       </div>
     </div>
   </section>
 
+  <!-- Seção de Fórmula 1 (Ferrari) -->
   <section id="f1" class="f1">
-    <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/d/d2/Scuderia_Ferrari_Logo.svg" alt="Ferrari">
-      <div>
-        🏎️ <strong>Ferrari</strong><br>
-        Próxima corrida: GP da Itália - 14/04<br>
-        Última corrida: Ferrari P2 e P5
-      </div>
-    </div>
+    <h2>Ferrari</h2>
+    <p id="f1-loading">Carregando resultados da Ferrari...</p>
+    <!-- Resultados reais são preenchidos via JavaScript -->
   </section>
 
+  <!-- Seção de UFC -->
   <section id="ufc" class="ufc">
+    <!-- Cards das lutas dos últimos eventos -->
     <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/e/ef/UFC_Logo.svg" alt="UFC">
+      <img src="icons/ufc.png" alt="UFC">
       <div>
         🥊 <strong>UFC 299</strong><br>
         Luta principal: Poirier vs. Gaethje<br>
         Resultado: Gaethje venceu por KO (Round 2)
       </div>
     </div>
+
     <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/e/ef/UFC_Logo.svg" alt="UFC">
+      <img src="icons/ufc.png" alt="UFC">
       <div>
         🥊 <strong>UFC 298</strong><br>
         Luta principal: Volkanovski vs. Topuria<br>
         Resultado: Topuria venceu por decisão unânime
       </div>
     </div>
+
     <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/e/ef/UFC_Logo.svg" alt="UFC">
+      <img src="icons/ufc.png" alt="UFC">
       <div>
         🥊 <strong>UFC 297</strong><br>
         Luta principal: Strickland vs. Du Plessis<br>
         Resultado: Du Plessis venceu por decisão dividida
       </div>
     </div>
+
+    <!-- Evento atual em andamento -->
     <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/e/ef/UFC_Logo.svg" alt="UFC">
+      <img src="icons/ufc.png" alt="UFC">
       <div>
         🟢 <strong>UFC 300 (Atual)</strong><br>
         Luta principal: Jones vs. Miocic<br>
         Status: Acontecendo agora!
       </div>
     </div>
+
+    <!-- Próximo evento -->
     <div class="card">
-      <img src="https://upload.wikimedia.org/wikipedia/en/e/ef/UFC_Logo.svg" alt="UFC">
+      <img src="icons/ufc.png" alt="UFC">
       <div>
         🔜 <strong>UFC 301</strong><br>
         Luta principal: Adesanya vs. Pereira III<br>
@@ -198,14 +136,7 @@
     </div>
   </section>
 
-  <script>
-    function showSection(sectionId) {
-      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-
-      document.getElementById(sectionId).classList.add('active');
-      document.querySelector(`nav button[onclick*="${sectionId}"]`).classList.add('active');
-    }
-  </script>
+  <!-- Script principal que contém todas as funções JS -->
+  <script src="script.js"></script>
 </body>
 </html>
