@@ -21,6 +21,29 @@
   /* 🔤 Estilos básicos do corpo da página */
   body {
     margin: 0;
+    /* 🌍 Variáveis principais de cores (modo claro) */
+:root {
+    --bg-color: #f0f0f0;       /* Cor de fundo geral */
+    --card-bg: white;          /* Cor de fundo dos cards */
+    --text-color: #000;        /* Cor padrão do texto */
+    --nav-bg: #333;            /* Cor do fundo da navbar */
+    --nav-active: #444;        /* Cor da navbar quando ativa/hover */
+  }
+  
+  /* 🕶️ Ajustes automáticos para modo escuro, se o usuário preferir */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-color: #121212;
+      --card-bg: #1e1e1e;
+      --text-color: #fff;
+      --nav-bg: #222;
+      --nav-active: #333;
+    }
+  }
+  
+  /* 🔤 Estilos básicos do corpo da página */
+  body {
+    margin: 0;
     font-family: Arial, sans-serif;
     background: var(--bg-color);
     color: var(--text-color);
@@ -96,28 +119,25 @@
     height: 50px;
     object-fit: contain;
   }
-  
-  /* 🏎️ Estilo para lista de resultados da F1 */
-  #f1 ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-  }
-  
-  #f1 li {
-    padding: 6px 12px;
-    background-color: #ffe8e8;
-    border-left: 4px solid red;
-    margin-bottom: 6px;
-    border-radius: 8px;
-    font-weight: bold;
-  }
-  
-  /* ⚽🏀🏎️🥊 Cor da borda lateral dos cards por categoria */
-  .futebol .card { border-left: 5px solid #008000; }   /* Futebol - Verde */
-  .nba .card     { border-left: 5px solid #007A33; }   /* NBA - Verde Celtics */
-  .f1 .card      { border-left: 5px solid #DC0000; }   /* F1 - Vermelho Ferrari */
-  .ufc .card     { border-left: 5px solid #d32f2f; }    /* UFC - Vermelho sangue */
+ /* ⚽🏀🏎️🥊 Cor da borda lateral dos cards por categoria */
+
+/* Remove a borda padrão de futebol */
+.futebol .card { border-left: none; }
+
+/* Borda por time (com base no alt da imagem dentro do card) */
+.futebol .card:has(img[alt="SPFC"])     { border-left: 5px solid red; }     /* SPFC - Vermelho */
+.futebol .card:has(img[alt="Vasco"])    { border-left: 5px solid black; }   /* Vasco - Preto */
+.futebol .card:has(img[alt="Paysandu"]) { border-left: 5px solid blue; }    /* Paysandu - Azul */
+.futebol .card:has(img[alt="Branco"]) { border-left: 5px solid rgb(255, 255, 255); } /* Branco - Branco*/
+
+
+.nba .card  { border-left: 5px solid #007A33; }  /* NBA - Verde Celtics */
+.nba .card:has(img[alt="Branco"]) { border-left: 5px solid rgb(255, 255, 255); } /* Branco - Branco*/
+.f1 .card   { border-left: 5px solid #DC0000; }  /* F1 - Vermelho Ferrari */
+.f1 .card:has(img[alt="Branco"]) { border-left: 5px solid rgb(255, 255, 255); } /* Branco - Branco*/
+.ufc .card  { border-left: 5px solid #d32f2f; }   /* UFC - Vermelho sangue */
+.ufc .card:has(img[alt="Branco"]) { border-left: 5px solid rgb(255, 255, 255); } /* Branco - Branco*/
+
   
   /* 🌑 Modo escuro forçado via classe (não depende do sistema) */
   body.dark {
@@ -147,14 +167,207 @@
     color: white;
   }
   
-  /* ❤️ Ferrari Style pro botão no modo escuro */
-  body.dark #darkModeBtn {
-    background-color: #e10600; /* Vermelho Ferrari */
-    border-color: #e10600;
+  /* Estilo para links: cor preta e sem sublinhado */
+a {
+  color: black;
+  text-decoration: none;
+}
+
+/* Quando o link for visitado, mantém preto também */
+a:visited {
+  color: black;
+}
+
+/* (Opcional) Se quiser dar um efeito no hover */
+a:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
+/* Estilo para links no modo claro: texto preto */
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
+/* Estilo para links no modo escuro */
+body.dark a,
+body.dark a:visited {
+  color: white;
+}
+
+body.dark a:hover {
+  color: #ddd;
+}
+
+
+    font-family: Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s; /* Suavidade ao alternar dark mode */
+  }
+  
+  /* 🧱 Cabeçalho */
+  header {
+    background-color: #222;
     color: #fff;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
   }
   
-  body.dark #darkModeBtn:hover {
-    background-color: #b40000; /* Vermelho mais escuro */
+  /* 📱 Navbar principal */
+  nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--nav-bg);
+    flex-wrap: wrap; /* quebra se não couber na tela */
   }
   
+  nav button {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    background: none;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  nav button:hover,
+  nav button.active {
+    background-color: var(--nav-active);
+  }
+  
+  /* 🧱 Cada seção de conteúdo (Futebol, NBA, F1, UFC) */
+  section {
+    display: none;
+    padding: 1rem;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  section.active {
+    display: block;
+  }
+  
+  /* ✨ Animação de entrada */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* 💳 Estilo dos cards */
+  .card {
+    background: var(--card-bg);
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  /* 🖼️ Imagens dentro dos cards */
+  .card img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+ /* ⚽🏀🏎️🥊 Cor da borda lateral dos cards por categoria */
+
+/* Remove a borda padrão de futebol */
+.futebol .card { border-left: none; }
+
+/* Borda por time (com base no alt da imagem dentro do card) */
+.futebol .card:has(img[alt="SPFC"])     { border-left: 5px solid red; }     /* SPFC - Vermelho */
+.futebol .card:has(img[alt="Vasco"])    { border-left: 5px solid black; }   /* Vasco - Preto */
+.futebol .card:has(img[alt="Paysandu"]) { border-left: 5px solid blue; }    /* Paysandu - Azul */
+.futebol .card:has(img[alt="Brasileirao"]) { border-left: 5px solid rgb(255, 255, 255); }
+
+.nba .card  { border-left: 5px solid #007A33; }  /* NBA - Verde Celtics */
+.f1 .card   { border-left: 5px solid #DC0000; }  /* F1 - Vermelho Ferrari */
+.ufc .card  { border-left: 5px solid #d32f2f; }   /* UFC - Vermelho sangue */
+
+  
+  /* 🌑 Modo escuro forçado via classe (não depende do sistema) */
+  body.dark {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #fff;
+    --nav-bg: #222;
+    --nav-active: #333;
+  }
+  
+  /* ⚡ Botão de modo escuro/claro */
+  #darkModeBtn {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 2px solid var(--nav-active);
+    padding: 8px 16px;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  #darkModeBtn:hover {
+    background-color: var(--nav-active);
+    color: white;
+  }
+  
+  /* Estilo para links: cor preta e sem sublinhado */
+a {
+  color: black;
+  text-decoration: none;
+}
+
+/* Quando o link for visitado, mantém preto também */
+a:visited {
+  color: black;
+}
+
+/* (Opcional) Se quiser dar um efeito no hover */
+a:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
+/* Estilo para links no modo claro: texto preto */
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
+/* Estilo para links no modo escuro */
+body.dark a,
+body.dark a:visited {
+  color: white;
+}
+
+body.dark a:hover {
+  color: #ddd;
+}
+

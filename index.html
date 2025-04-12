@@ -38,104 +38,83 @@
     <button onclick="toggleDarkMode()" id="darkModeBtn">🌙 Modo Escuro</button>
   </div>
 
-  <!-- Seção de Futebol -->
   <section id="futebol" class="active futebol">
-    <!-- Card do São Paulo -->
-    <div class="card spfc">
+    <a href="https://www.google.com/search?q=São+Paulo+FC" target="_blank" class="card spfc">
       <img src="icons/spfc.png" alt="SPFC">
       <div>
         ⚽ <strong>São Paulo FC</strong><br>
-        <span class="resultado">Carregando...</span> <!-- O resultado do jogo vai ser colocado aqui via JS -->
       </div>
-    </div>
-
-    <!-- Card do Vasco -->
-    <div class="card" id="vasco-card">
+    </a>
+  
+    <a href="https://www.google.com/search?q=Vasco+da+Gama" target="_blank" class="card">
       <img src="icons/vasco.png" alt="Vasco">
       <div>
         ⚽ <strong>Vasco</strong><br>
-        <span id="vasco-jogo">Carregando...</span> <!-- Aqui também será atualizado via JS -->
       </div>
-    </div>
-
-    <div class="card" id="paysandu-card">
+    </a>
+  
+    <a href="https://www.google.com/search?q=Paysandu+Sport+Club" target="_blank" class="card">
       <img src="icons/paysandu.png" alt="Paysandu">
       <div>
         ⚽ <strong>Paysandu</strong><br>
-        <span id="paysandu-jogo">Carregando...</span>
       </div>
-    </div>    
-  </section>
+    </a>
 
-  <!-- Seção de NBA -->
+    <a href="https://www.google.com/search?q=tabela+do+brasileirao" target="_blank" class="card">
+      <img src="icons/brasileirao.png" alt="Branco"> 
+      <div>
+        ⚽ <strong>Tabela do Brasileirão</strong><br>
+      </div>
+    </a>
+    
+  </section>
+  
   <section id="nba" class="nba">
-    <div class="card">
+    <a href="https://www.google.com/search?q=Boston+Celtics" target="_blank" class="card">
       <img src="icons/celtics.png" alt="Celtics"> 
       <div>
         🏀 <strong>Boston Celtics</strong><br>
-        Último jogo: Celtics 115 x 108 Lakers <!-- Também fixo no momento -->
       </div>
-    </div>
-  </section>
+    </a>
 
-  <!-- Seção de Fórmula 1 (Ferrari) -->
+    <a href="https://www.google.com/search?q=tabela+nba" target="_blank" class="card">
+      <img src="icons/nba.png" alt="Branco">
+      <div>
+        🏀 <strong>Classificação NBA</strong><br>
+      </div>
+    </a>
+  </section>
+  
   <section id="f1" class="f1">
-    <h2>Ferrari</h2>
-    <p id="f1-loading">Carregando resultados da Ferrari...</p>
-    <!-- Resultados reais são preenchidos via JavaScript -->
+    <a href="https://www.google.com/search?q=Ferrari+F1" target="_blank" class="card">
+      <img src="icons/ferrari.png" alt="Ferrari">
+      🔴 <strong>Scuderia Ferrari</strong><br>
+    </a>
+    
+    <a href="https://www.google.com/search?q=classificacao+f1" target="_blank" class="card">
+      <img src="icons/f1.png" alt="Branco">
+      <div>
+        🔴  <strong>Classificação F1</strong><br>
+      </div>
+    </a>
   </section>
-
-  <!-- Seção de UFC -->
+  
   <section id="ufc" class="ufc">
-    <!-- Cards das lutas dos últimos eventos -->
-    <div class="card">
+    <a href="https://www.google.com/search?q=UFC" target="_blank" class="card">
       <img src="icons/ufc.png" alt="UFC">
       <div>
-        🥊 <strong>UFC 299</strong><br>
-        Luta principal: Poirier vs. Gaethje<br>
-        Resultado: Gaethje venceu por KO (Round 2)
+        🥊 <strong>UFC</strong><br>
       </div>
-    </div>
+    </a>
 
-    <div class="card">
-      <img src="icons/ufc.png" alt="UFC">
+    <a href="https://www.google.com/ufc.com/rankings" target="_blank" class="card">
+      <img src="icons/ufc2.png" alt="Branco">
       <div>
-        🥊 <strong>UFC 298</strong><br>
-        Luta principal: Volkanovski vs. Topuria<br>
-        Resultado: Topuria venceu por decisão unânime
+        🔴  <strong>Ranking UFC</strong><br>
       </div>
-    </div>
-
-    <div class="card">
-      <img src="icons/ufc.png" alt="UFC">
-      <div>
-        🥊 <strong>UFC 297</strong><br>
-        Luta principal: Strickland vs. Du Plessis<br>
-        Resultado: Du Plessis venceu por decisão dividida
-      </div>
-    </div>
-
-    <!-- Evento atual em andamento -->
-    <div class="card">
-      <img src="icons/ufc.png" alt="UFC">
-      <div>
-        🟢 <strong>UFC 300 (Atual)</strong><br>
-        Luta principal: Jones vs. Miocic<br>
-        Status: Acontecendo agora!
-      </div>
-    </div>
-
-    <!-- Próximo evento -->
-    <div class="card">
-      <img src="icons/ufc.png" alt="UFC">
-      <div>
-        🔜 <strong>UFC 301</strong><br>
-        Luta principal: Adesanya vs. Pereira III<br>
-        Data: 28/04/2025
-      </div>
-    </div>
+    </a>
   </section>
-
+  
   <!-- Script principal que contém todas as funções JS -->
   <script src="script.js"></script>
 </body>
