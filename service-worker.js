@@ -1,4 +1,4 @@
-const CACHE_NAME = "esportes-v2"; // Troque o número sempre que quiser forçar update
+const CACHE_NAME = "esportes-v3"; // Troque o número sempre que quiser forçar update
 const urlsToCache = ["index.html", "manifest.json"];
 
 // Instalação do Service Worker
